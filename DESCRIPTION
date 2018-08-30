@@ -1,0 +1,10 @@
+Package: cleanstreets
+Type: Package
+Title: Standardizes Common Address Formats
+Version: 0.1.0
+Author: Stu Harty
+Maintainer: Stu harty <sbharty@gmail.com>
+Description: Standardizes comman street address formats.
+License: First Amendment
+Encoding: UTF-8
+LazyData: true
