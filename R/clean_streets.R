@@ -15,7 +15,7 @@ street_cleaner <- function(x, abbr = FALSE, caps = TRUE){
   
   # df_key is the tile abbreviation crosswalk
   # it exists in the /data directory 
-  load("data/df_key.Rda")
+  # load("data/df_key.Rda")
   
   # deterime if going from long format to abbreviation or the other way 
   if (abbr == FALSE) {
