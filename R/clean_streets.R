@@ -2,22 +2,22 @@
 #'
 #' @description Function to standardize common street address formats
 #'
-#' @param address
+#' @param street address
 #'
-#' @return NULL
+#' @return clean address
 #'
-#' @examples stree_cleaner
+#' @examples street_cleaner
 #'
 #' @export street_cleaner
 
 street_cleaner <- function(x, abbr = FALSE, caps = TRUE){
   library(stringr)
   
-  # df_key is the tile abbreviation crosswalk
+  # df_key is the title abbreviation crosswalk
   # it exists in the /data directory 
   # load("data/df_key.Rda")
   
-  # deterime if going from long format to abbreviation or the other way 
+  # determine if going from long format to abbreviation or the other way 
   if (abbr == FALSE) {
     to_replace <- c(unlist(df_key$abbreviation))
     replace_with <- c(unlist(df_key$title))

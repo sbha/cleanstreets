@@ -1,6 +1,6 @@
 # cleanstreets
 ## Overview
-Standardizes most common address attributes so that formats are consistent. 
+Standardizes most common street address attributes so that formats are consistent. 
 
 ## Installation
 ``` r
