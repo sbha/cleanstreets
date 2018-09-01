@@ -23,11 +23,13 @@ street_cleaner('123 Main Street', abbr = TRUE)
 street_cleaner('123 Main St.', caps = FALSE)
 #> "123 Main Street"
 
+# Makes some rough assumptions so it should be able to determine whether St is Saint or Street:
+street_cleaner('123 St. James St.')
+[1] "123 SAINT JAMES STREET"
+
 # As a part of a dplyr::mutate():
 library(dplyr)
 df %>% 
   mutate(clean_address = street_cleaner(address, abbr = TRUE)) 
-
-
 
 ```
