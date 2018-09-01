@@ -38,10 +38,10 @@ street_cleaner <- function(x, abbr = FALSE, caps = TRUE){
   address_out <- str_replace_all(address, replace_with)
   
   # Street and Saint check
-  address_out <- ifelse(str_count('\\bSTREET\\b') >= 2, 
-                        str_replace(address_out, '\\bSTREET\\b', 'SAINT'), 
+  address_out <- ifelse(str_count(address_out, '\\bSTREET\\b') >= 2,
+                        str_replace(address_out, '\\bSTREET\\b', 'SAINT'),
                         address_out)
-  
+
   # determine if output should be all caps or just the first letter
   if (caps == FALSE) {
     address_out <- gsub("(^|[[:space:]])([[:alpha:]])", "\\1\\U\\2", tolower(address_out), perl=TRUE)
