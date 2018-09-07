@@ -14,9 +14,6 @@ PLACE PL
 POINT PT
 ROAD RD
 SUITE STE
-\\1SAINT ([0-9]+\\s+)ST 
-\\1STREET ([A-Z]+\\s+)ST
-STREET STR
 TERRACE TER
 TERRACE TERR
 TURNPIKE TRNPK
@@ -33,4 +30,12 @@ NORTHWEST NW', header = TRUE, stringsAsFactors = FALSE)
 
 # to update:
 #devtools::use_data(df_key, overwrite = TRUE)
+
+# STREET STR
+# \\1SAINT ([0-9]+\\s+)ST 
+# \\1STREET ([A-Z]+\\s+)ST
+
+#STREET ST
+#SAINT ([0-9]+\\s+)ST
+
 
