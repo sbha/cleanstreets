@@ -26,7 +26,8 @@ SOUTH S
 SOUTHWEST SW
 SOUTHEAST SE
 NORTHEAST NE
-NORTHWEST NW', header = TRUE, stringsAsFactors = FALSE)
+NORTHWEST NW', 
+header = TRUE, stringsAsFactors = FALSE)
 
 # to update:
 #devtools::use_data(df_key, overwrite = TRUE)
