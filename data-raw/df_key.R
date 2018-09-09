@@ -1,6 +1,8 @@
 # raw data for the title abbreviation table
 df_key <- read.table(text = 'title abbreviation
+ALLEY ALY
 AVENUE AVE
+BEND BND
 BOULEVARD BLVD       
 DRIVE DR
 FORT FT
@@ -16,7 +18,9 @@ ROAD RD
 SUITE STE
 TERRACE TER
 TERRACE TERR
+TRACE TRCE
 TURNPIKE TRNPK
+TURNPIKE TPKE
 VIEW VW
 WAY WY
 EAST E
@@ -30,7 +34,7 @@ NORTHWEST NW',
 header = TRUE, stringsAsFactors = FALSE)
 
 # to update:
-#devtools::use_data(df_key, overwrite = TRUE)
+# devtools::use_data(df_key, overwrite = TRUE)
 
 # STREET STR
 # \\1SAINT ([0-9]+\\s+)ST 
@@ -39,4 +43,4 @@ header = TRUE, stringsAsFactors = FALSE)
 #STREET ST
 #SAINT ([0-9]+\\s+)ST
 
-
+# https://pe.usps.com/text/pub28/28apc_002.htm
