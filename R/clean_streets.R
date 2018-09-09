@@ -39,10 +39,10 @@ street_cleaner <- function(x, abbr = FALSE, caps = TRUE){
   address_out <- str_replace_all(address, replace_with)
   
   # Street and Saint check - 
-  address_out <- ifelse(abbr == FALSE, gsub('([0-9]\\s+)ST\\b', '\\1SAINT', address_out), address_out)
-  address_out <- ifelse(abbr == FALSE, gsub('([A-Z]\\s+)ST\\b', '\\1STREET', address_out), address_out)
-  address_out <- ifelse(abbr == FALSE, gsub('\\bSTR\\b', 'STREET', address_out), address_out)
-  address_out <- ifelse(abbr == TRUE, gsub('\\b(STREET|SAINT|STR)\\b', 'ST', address_out), address_out)
+  # address_out <- ifelse(abbr == FALSE, gsub('([0-9]\\s+)ST\\b', '\\1SAINT', address_out), address_out)
+  # address_out <- ifelse(abbr == FALSE, gsub('([A-Z]\\s+)ST\\b', '\\1STREET', address_out), address_out)
+  # address_out <- ifelse(abbr == FALSE, gsub('\\bSTR\\b', 'STREET', address_out), address_out)
+  # address_out <- ifelse(abbr == TRUE, gsub('\\b(STREET|SAINT|STR)\\b', 'ST', address_out), address_out)
   # if STREET occurs twice, replace first instance with SAINT
   address_out <- ifelse(str_count(address_out, '\\bSTREET\\b') >= 2,
                         str_replace(address_out, '\\bSTREET\\b', 'SAINT'),
