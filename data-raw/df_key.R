@@ -3,7 +3,8 @@ df_key <- read.table(text = 'title abbreviation
 ALLEY ALY
 AVENUE AVE
 BEND BND
-BOULEVARD BLVD       
+BOULEVARD BLVD 
+BYPASS BYP
 DRIVE DR
 FORT FT
 HIGHWAY HWY
