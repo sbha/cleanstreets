@@ -50,9 +50,9 @@ street_cleaner <- function(x, abbr = FALSE, caps = TRUE){
   # address_out <- ifelse(abbr == FALSE, str_replace(address_out, '\\bSTR\\b', 'STREET'), address_out)
   # address_out <- ifelse(abbr == TRUE, str_replace(address_out, '\\b(STREET|SAINT|STR)\\b', 'ST'), address_out)
   
-  if(abbr == FALSE) address_out <- str_replace(address_out, '([0-9]\\s+)ST\\b', '\\1SAINT')
-  if(abbr == FALSE) address_out <- str_replace(address_out, '([A-Z]\\s+)ST\\b', '\\1STREET')
-  if(abbr == FALSE) address_out <- str_replace(address_out, '\\bSTR\\b', 'STREET')
+  if(abbr == FALSE) address_out <- str_replace_all(address_out, '(([0-9]|NORTH|NORTHEAST|NORTHWEST|EAST|WEST|SOUTH|SOUTHEAST|SOUTHWEST)\\s+)ST\\b', '\\1SAINT')
+  if(abbr == FALSE) address_out <- str_replace_all(address_out, '([A-Z]\\s+)ST\\b', '\\1STREET')
+  if(abbr == FALSE) address_out <- str_replace_all(address_out, '\\bSTR\\b', 'STREET')
   if(abbr == TRUE) address_out <- str_replace_all(address_out, '\\b(STREET|SAINT|STR)\\b', 'ST')
   # address_out <- ifelse(abbr == FALSE, str_replace(address_out, '([A-Z]\\s+)ST\\b', '\\1STREET'), address_out)
   # address_out <- ifelse(abbr == FALSE, str_replace(address_out, '\\bSTR\\b', 'STREET'), address_out)
