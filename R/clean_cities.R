@@ -2,11 +2,11 @@
 
 city_cleaner <- function(x, abbr = FALSE, caps = TRUE){
   
-  df_key_city <- read.table(text = 'title abbreviation
-                              FORT FT
-                              POINT PT
-                              SAINT ST',
-                              header = TRUE, stringsAsFactors = FALSE)
+  # df_key_city <- read.table(text = 'title abbreviation
+  #                             FORT FT
+  #                             POINT PT
+  #                             SAINT ST',
+  #                             header = TRUE, stringsAsFactors = FALSE)
   
   if (abbr == FALSE) {
     to_replace <- c(unlist(df_key_city$abbreviation))

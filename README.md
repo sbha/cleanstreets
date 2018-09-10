@@ -29,7 +29,23 @@ street_cleaner('123 St. James St.')
 
 # As a part of a dplyr::mutate():
 library(dplyr)
+streets <- c('123 Main St.', '123 Main Str', '123 Main Street', '123 St. James St.', '123 STREET JAMES STREET', '123 Easy Ave NW')
+df <- data_frame(address = streets)
 df %>% 
-  mutate(clean_address = street_cleaner(address, abbr = TRUE)) 
+  mutate(clean_address = street_cleaner(address),
+         clean_address_abbr = street_cleaner(address, abbr = TRUE)) 
+#> # A tibble: 6 x 3
+#>   address                 clean_address                 clean_address_abbr 
+#>   <chr>                   <chr>                         <chr>              
+#> 1 123 Main St.            123 MAIN STREET               123 MAIN ST        
+#> 2 123 Main Str            123 MAIN STREET               123 MAIN ST        
+#> 3 123 Main Street         123 MAIN STREET               123 MAIN ST        
+#> 4 123 St. James St.       123 SAINT JAMES STREET        123 ST JAMES ST    
+#> 5 123 STREET JAMES STREET 123 SAINT JAMES STREET        123 ST JAMES ST    
+#> 6 123 Easy Ave NW         123 EASY AVENUE NORTHWEST     123 EASY AVE NW
+
+
+# city_cleaner() is similar to street_cleaner(), but standarizes city attritubes rather than streets 
+
 
 ```
