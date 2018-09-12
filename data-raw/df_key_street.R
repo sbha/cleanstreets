@@ -25,6 +25,16 @@ TURNPIKE TPKE
 TURNPIKE TRNPK
 VIEW VW
 WAY WY
+FIRST 1ST
+SECOND 2ND
+THIRD 3RD
+FOURTH 4TH
+FIFTH 5TH
+SIXTH 6TH
+SEVENTH 7TH
+EIGTH 8TH
+NINTH 9TH
+TENTH 10th
 EAST E
 WEST W
 NORTH N
@@ -38,6 +48,8 @@ header = TRUE, stringsAsFactors = FALSE)
 # to update:
 # devtools::use_data(df_key_street, overwrite = TRUE)
 
+# INTERSTATE I
+
 # STREET STR
 # \\1SAINT ([0-9]+\\s+)ST 
 # \\1STREET ([A-Z]+\\s+)ST
@@ -46,3 +58,4 @@ header = TRUE, stringsAsFactors = FALSE)
 #SAINT ([0-9]+\\s+)ST
 
 # https://pe.usps.com/text/pub28/28apc_002.htm
+# 
