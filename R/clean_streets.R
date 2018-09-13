@@ -35,35 +35,27 @@ street_cleaner <- function(x, abbr = FALSE, caps = TRUE){
   address <- gsub('\\.|,', ' ', toupper(x))
   address <- gsub('\\s+', ' ', address)
 
-  # address <- if_else(abbr == FALSE, sub('([0-9]\\s+)ST\\b', '\\1SAINT', address), address)
-  # address <- ifelse(abbr == FALSE, sub('([A-Z]\\s+)ST\\b', '\\1STREET', address), address)
-  # address <- ifelse(abbr == FALSE, sub('\\bSTR\\b', 'STREET', address), address)
-  # address <- ifelse(abbr == TRUE, sub('\\b(STREET|SAINT|STR)\\b', 'ST', address), address)
-  
-  # replace target text
+   # replace target text
   address_out <- str_replace_all(address, replace_with)
   
   # Street and Saint check - 
   
-  # address_out <- ifelse(abbr == FALSE, str_replace_all(address_out, '([0-9]\\s+)ST\\b', '\\1SAINT'), address_out)
-  # address_out <- ifelse(abbr == FALSE, str_replace(address_out, '([A-Z]\\s+)ST\\b', '\\1STREET'), address_out)
-  # address_out <- ifelse(abbr == FALSE, str_replace(address_out, '\\bSTR\\b', 'STREET'), address_out)
-  # address_out <- ifelse(abbr == TRUE, str_replace(address_out, '\\b(STREET|SAINT|STR)\\b', 'ST'), address_out)
-  
-
   if(abbr == FALSE) address_out <- str_replace_all(address_out, '([A-Z]\\s+)ST\\b', '\\1STREET')
   if(abbr == FALSE) address_out <- str_replace_all(address_out, '\\bSTR\\b', 'STREET')
   if(abbr == FALSE) address_out <- str_replace_all(address_out, '(([0-9]|NORTH|NORTHEAST|NORTHWEST|EAST|WEST|SOUTH|SOUTHEAST|SOUTHWEST)\\s+)ST\\b', '\\1SAINT')
   if(abbr == TRUE) address_out <- str_replace_all(address_out, '\\b(STREET|SAINT|STR)\\b', 'ST')
-  # address_out <- ifelse(abbr == FALSE, str_replace(address_out, '([A-Z]\\s+)ST\\b', '\\1STREET'), address_out)
-  # address_out <- ifelse(abbr == FALSE, str_replace(address_out, '\\bSTR\\b', 'STREET'), address_out)
-  #address_out <- ifelse(abbr == TRUE, str_replace(address_out, '\\b(STREET|SAINT|STR)\\b', 'ST'), address_out)
-
-  # if STREET occurs twice, replace first instance with SAINT
-  address_out <- ifelse(str_count(address_out, '\\bSTREET\\b') >= 2,
-                        str_replace(address_out, '\\bSTREET\\b', 'SAINT'),
+  
+  # if a street type occurs twice, replace first instance with SAINT
+  # address_out <- ifelse(str_count(address_out, '\\bSTREET\\b') >= 2,
+  #                       str_replace(address_out, '\\bSTREET\\b', 'SAINT'),
+  #                       address_out)
+  # searchable street types
+  st_strs <- paste0('\\b(', paste(c(unique(df_key_street$title[df_key_street$type == 'ST']), 'STREET'), collapse = '|'), ')\\b')
+  
+  address_out <- ifelse(str_count(address_out, st_strs) >= 2,
+                        str_replace(address_out, st_strs, 'SAINT'),
                         address_out)
-
+  
   # determine if output should be all caps or just the first letter
   if (caps == FALSE) {
     address_out <- gsub("(^|[[:space:]])([[:alpha:]])", "\\1\\U\\2", tolower(address_out), perl=TRUE)
