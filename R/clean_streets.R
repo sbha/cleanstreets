@@ -11,7 +11,7 @@
 #' @export street_cleaner
 
 street_cleaner <- function(x, abbr = FALSE, caps = TRUE){
-  library(stringr)
+  #library(stringr)
   
   # df_key_street is the title abbreviation crosswalk
   # it exists in the /data directory 
@@ -36,14 +36,14 @@ street_cleaner <- function(x, abbr = FALSE, caps = TRUE){
   address <- gsub('\\s+', ' ', address)
 
    # replace target text
-  address_out <- str_replace_all(address, replace_with)
+  address_out <- stringr::str_replace_all(address, replace_with)
   
   # Street and Saint check - 
   
-  if(abbr == FALSE) address_out <- str_replace_all(address_out, '([A-Z]\\s+)ST\\b', '\\1STREET')
-  if(abbr == FALSE) address_out <- str_replace_all(address_out, '\\bSTR\\b', 'STREET')
-  if(abbr == FALSE) address_out <- str_replace_all(address_out, '(([0-9]|NORTH|NORTHEAST|NORTHWEST|EAST|WEST|SOUTH|SOUTHEAST|SOUTHWEST)\\s+)ST\\b', '\\1SAINT')
-  if(abbr == TRUE) address_out <- str_replace_all(address_out, '\\b(STREET|SAINT|STR)\\b', 'ST')
+  if(abbr == FALSE) address_out <- stringr::str_replace_all(address_out, '([A-Z]\\s+)ST\\b', '\\1STREET')
+  if(abbr == FALSE) address_out <- stringr::str_replace_all(address_out, '\\bSTR\\b', 'STREET')
+  if(abbr == FALSE) address_out <- stringr::str_replace_all(address_out, '(([0-9]|NORTH|NORTHEAST|NORTHWEST|EAST|WEST|SOUTH|SOUTHEAST|SOUTHWEST)\\s+)ST\\b', '\\1SAINT')
+  if(abbr == TRUE) address_out <- stringr::str_replace_all(address_out, '\\b(STREET|SAINT|STR)\\b', 'ST')
   
   # if a street type occurs twice, replace first instance with SAINT
   # address_out <- ifelse(str_count(address_out, '\\bSTREET\\b') >= 2,
@@ -52,8 +52,8 @@ street_cleaner <- function(x, abbr = FALSE, caps = TRUE){
   # searchable street types
   st_strs <- paste0('\\b(', paste(c(unique(df_key_street$title[df_key_street$type == 'ST']), 'STREET'), collapse = '|'), ')\\b')
   
-  address_out <- ifelse(str_count(address_out, st_strs) >= 2,
-                        str_replace(address_out, st_strs, 'SAINT'),
+  address_out <- ifelse(stringr::str_count(address_out, st_strs) >= 2,
+                        stringr::str_replace(address_out, st_strs, 'SAINT'),
                         address_out)
   
   # determine if output should be all caps or just the first letter

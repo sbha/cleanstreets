@@ -25,7 +25,7 @@ city_cleaner <- function(x, abbr = FALSE, caps = TRUE){
   city <- gsub('\\s+', ' ', city)
   
   # replace target text
-  city_out <- str_replace_all(city, replace_with)
+  city_out <- stringr::str_replace_all(city, replace_with)
   
   # determine if output should be all caps or just the first letter
   if (caps == FALSE) {
