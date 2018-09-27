@@ -1,6 +1,6 @@
 # city_cleaner
 
-city_cleaner <- function(x, abbr = FALSE, caps = TRUE, period = TRUE){
+city_cleaner <- function(x, abbr = FALSE, caps = TRUE, period = FALSE){
   
   # df_key_city <- read.table(text = 'title abbreviation
   #                             FORT FT
