@@ -26,7 +26,15 @@ city_cleaner <- function(x, abbr = FALSE, caps = TRUE){
   
   # replace target text
   city_out <- stringr::str_replace_all(city, replace_with)
-  
+ 
+  if (abbr == TRUE & period == TRUE){
+    to_replace <- c(unlist(df_key_city$abbreviation))
+    replace_with <- paste0(c(unlist(df_key_city$abbreviation)), '.')
+    to_replace <- paste0('\\b', to_replace, '\\b')
+    names(replace_with) <- to_replace
+    city_out <- stringr::str_replace_all(city, replace_with)
+  }
+   
   # determine if output should be all caps or just the first letter
   if (caps == FALSE) {
     city_out <- gsub("(^|[[:space:]])([[:alpha:]])", "\\1\\U\\2", tolower(city_out), perl=TRUE)
