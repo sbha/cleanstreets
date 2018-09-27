@@ -11,7 +11,7 @@ city_cleaner <- function(x, abbr = FALSE, caps = TRUE, period = TRUE){
   if (abbr == FALSE) {
     to_replace <- c(unlist(df_key_city$abbreviation))
     replace_with <- c(unlist(df_key_city$title))
-  } else if (abbr == TRUE){
+  } else if (abbr == TRUE & period == FALSE){
     to_replace <- c(unlist(df_key_city$title))
     replace_with <- c(unlist(df_key_city$abbreviation))
   }
