@@ -51,7 +51,7 @@ df %>%
 #> 8 123 First ST        123 FIRST STREET          123 1ST ST        
 #> 9 456 2nd Ave         456 SECOND AVENUE         456 2ND AVE  
 
-# city_cleaner() is similar to street_cleaner(), but standarizes city attritubes rather than streets:
+# city_cleaner() is similar to street_cleaner(), but standarizes city attributes rather than streets:
 cities <- c('Fort Collins', 'Ft Myers', 'Saint Louis', 'St. Petersburg')
 df <- data_frame(city = cities)
 df %>%
