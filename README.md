@@ -19,7 +19,7 @@ library(cleanstreets)
 street_cleaner('123 Main St.')
 #> "123 MAIN STREET"
 
-# Setting the argument abbr = TRUE converts longer names to abbreviations:
+# Setting the argument abbr = TRUE converts long names to abbreviations:
 street_cleaner('123 Main Street', abbr = TRUE)
 #> "123 MAIN ST"
 
@@ -31,7 +31,7 @@ street_cleaner('123 Main St.', caps = FALSE)
 street_cleaner('123 St. James St.')
 [1] "123 SAINT JAMES STREET"
 
-# As a part of a dplyr::mutate() is where street_cleaner() really shines:
+# As a part of a dplyr::mutate() is where street_cleaner() can really shine:
 library(dplyr)
 streets <- c('123 Main St.', '123 Main Str', '123 Main Street', '123 St. James St.', '123 ST JAMES STREET', '456 St. James Ave.', '123 Easy Ave NW', '123 First ST', '456 2nd Ave')
 df <- data_frame(address = streets)
@@ -51,7 +51,7 @@ df %>%
 #> 8 123 First ST        123 FIRST STREET          123 1ST ST        
 #> 9 456 2nd Ave         456 SECOND AVENUE         456 2ND AVE  
 
-# city_cleaner() is similar to street_cleaner(), but standarizes city attributes rather than streets:
+# city_cleaner() is similar to street_cleaner(), but standarizes common city attributes rather than streets:
 cities <- c('Fort Collins', 'Ft Myers', 'Saint Louis', 'St. Petersburg')
 df <- data_frame(city = cities)
 df %>%

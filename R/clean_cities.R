@@ -14,6 +14,9 @@ city_cleaner <- function(x, abbr = FALSE, caps = TRUE, period = FALSE){
   } else if (abbr == TRUE & period == FALSE){
     to_replace <- c(unlist(df_key_city$title))
     replace_with <- c(unlist(df_key_city$abbreviation))
+  } else if (abbr == TRUE & period == TRUE){
+    to_replace <- c(unlist(df_key_city$title))
+    replace_with <- c(unlist(df_key_city$abbreviation))
   }
   
   # bind the string to replace to avoid bad matches
@@ -27,12 +30,11 @@ city_cleaner <- function(x, abbr = FALSE, caps = TRUE, period = FALSE){
   # replace target text
   city_out <- stringr::str_replace_all(city, replace_with)
  
+  # add period
   if (abbr == TRUE & period == TRUE){
-    to_replace <- c(unlist(df_key_city$abbreviation))
-    replace_with <- paste0(c(unlist(df_key_city$abbreviation)), '.')
-    to_replace <- paste0('\\b', to_replace, '\\b')
-    names(replace_with) <- to_replace
-    city_out <- stringr::str_replace_all(city, replace_with)
+    p_replace_with <- paste0(c(unlist(replace_with)), '.')
+    names(p_replace_with) <- paste0('\\b', replace_with, '\\b')
+    city_out <- stringr::str_replace_all(city_out, p_replace_with)
   }
    
   # determine if output should be all caps or just the first letter
@@ -49,5 +51,5 @@ city_cleaner <- function(x, abbr = FALSE, caps = TRUE, period = FALSE){
 # city_cleaner(test_city)
 # city_cleaner(test_city, caps = FALSE)
 # city_cleaner(test_city, abbr = TRUE, caps = FALSE)
-
+# city_cleaner(test_city, abbr = TRUE, period = TRUE)
 
