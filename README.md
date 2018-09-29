@@ -4,7 +4,7 @@ Standardizes most common street address attributes with consistent formats for R
 The package offers the following main functions:
 
 * `street_cleaner`  converts street address attributes to consistent abbreviated or full formats.
-* `city_cleaner` converts common city address names to consisntent abbreviated or full formats.
+* `city_cleaner` converts common city address names to consistent abbreviated or full formats.
 
 ## Installation
 ``` r
