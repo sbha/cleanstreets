@@ -10,7 +10,7 @@
 #'
 #' @export street_cleaner
 
-street_cleaner <- function(x, abbr = FALSE, caps = TRUE){
+street_cleaner <- function(x, abbr = FALSE, caps = TRUE, period = FALSE){
   #library(stringr)
   
   # df_key_street is the title abbreviation crosswalk
@@ -21,10 +21,13 @@ street_cleaner <- function(x, abbr = FALSE, caps = TRUE){
   if (abbr == FALSE) {
     to_replace <- c(unlist(df_key_street$abbreviation))
     replace_with <- c(unlist(df_key_street$title))
-    } else if (abbr == TRUE){
+  } else if (abbr == TRUE){
     to_replace <- c(unlist(df_key_street$title))
     replace_with <- c(unlist(df_key_street$abbreviation))
-    }
+  } else if (abbr == TRUE & period == TRUE){
+    to_replace <- c(unlist(df_key_street$title))
+    replace_with <- c(unlist(df_key_street$abbreviation))
+  }
 
   
   # bind the string to replace to avoid bad matches
@@ -55,6 +58,16 @@ street_cleaner <- function(x, abbr = FALSE, caps = TRUE){
   address_out <- ifelse(stringr::str_count(address_out, st_strs) >= 2,
                         stringr::str_replace(address_out, st_strs, 'SAINT'),
                         address_out)
+  
+  # add period
+  if (abbr == TRUE & period == TRUE){
+    # need to block number abbreviations - assume number abbreviations should not have a period - direction is probably ok
+    #p_to_replace <- c(unlist(df_key_street$abbreviation[!df_key_street$type %in% c('DIR', 'NUM')]), 'ST')
+    p_to_replace <- c(unlist(df_key_street$abbreviation[!df_key_street$type %in% c('NUM')]), 'ST')
+    p_replace_with <- paste0(p_to_replace, '.')
+    names(p_replace_with) <- paste0('\\b', p_to_replace, '\\b')
+    address_out <- stringr::str_replace_all(address_out, p_replace_with)
+  }
   
   # determine if output should be all caps or just the first letter
   if (caps == FALSE) {

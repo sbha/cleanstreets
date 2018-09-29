@@ -3,8 +3,8 @@
 Standardizes most common street address attributes with consistent formats for R. 
 The package offers the following main functions:
 
-* `street_cleaner`  converts street address attributes to consistent abbreviated or full formats.
-* `city_cleaner` converts common city address names to consistent abbreviated or full formats.
+* `street_cleaner`  converts street address attributes to consistent abbreviated or long formats.
+* `city_cleaner` converts common city address names to consistent abbreviated or long formats.
 
 ## Installation
 ``` r
@@ -27,7 +27,7 @@ street_cleaner('123 Main Street', abbr = TRUE)
 street_cleaner('123 Main St.', caps = FALSE)
 #> "123 Main Street"
 
-# Makes some rough assumptions so it should be able to determine whether St is Saint or Street:
+# Makes some rough assumptions to determine whether St is Saint or Street:
 street_cleaner('123 St. James St.')
 [1] "123 SAINT JAMES STREET"
 
