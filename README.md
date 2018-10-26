@@ -23,7 +23,7 @@ street_cleaner('123 Main St.')
 street_cleaner('123 Main Street', abbr = TRUE)
 #> "123 MAIN ST"
 
-# Return formatted address with only the first letter of each word capitalized, rather than all caps
+# Return formatted address with only the first letter of each word capitalized, rather than all caps:
 street_cleaner('123 Main St.', caps = FALSE)
 #> "123 Main Street"
 
