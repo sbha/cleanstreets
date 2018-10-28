@@ -1,10 +1,10 @@
 # cleanstreets
 ## Overview
 R functions to standardize most common street address attributes with consistent formats. 
-The package offers the following main functions:
+The package offers the following functions:
 
-* `street_cleaner`  converts street address attributes to consistent abbreviated or long format names.
-* `city_cleaner` converts common city address names to consistent abbreviated or long format names.
+* `street_cleaner()` converts street address attributes to consistent abbreviated or long format names.
+* `city_cleaner()` converts common city address names to consistent abbreviated or long format names.
 
 ## Installation
 ``` r
@@ -27,11 +27,11 @@ street_cleaner('123 Main Street', abbr = TRUE)
 street_cleaner('123 Main St.', caps = FALSE)
 #> "123 Main Street"
 
-# Makes some rough assumptions to determine whether St is Saint or Street:
+# The function makes some rough assumptions to determine whether St is Saint or Street:
 street_cleaner('123 St. James St.')
 [1] "123 SAINT JAMES STREET"
 
-# As a part of a dplyr::mutate() is where street_cleaner() can really shine:
+# Over a column of addresses with inconsistent formats and as a part of a dplyr::mutate() is where street_cleaner() can really shine:
 library(dplyr)
 streets <- c('123 Main St.', '123 Main Str', '123 Main Street', '123 St. James St.', '123 ST JAMES STREET', '456 St. James Ave.', '123 Easy Ave NW', '123 First ST', '456 2nd Ave')
 df <- data_frame(raw_address = streets)
