@@ -38,11 +38,10 @@ street_cleaner <- function(x, abbr = FALSE, caps = TRUE, period = FALSE){
   address <- gsub('\\.|,', ' ', toupper(x))
   address <- gsub('\\s+', ' ', address)
 
-   # replace target text
+  # replace target text
   address_out <- stringr::str_replace_all(address, replace_with)
   
-  # Street and Saint check - 
-  
+  # street and saint check  
   if(abbr == FALSE) address_out <- stringr::str_replace_all(address_out, '([A-Z]\\s+)ST\\b', '\\1STREET')
   if(abbr == FALSE) address_out <- stringr::str_replace_all(address_out, '\\bSTR\\b', 'STREET')
   if(abbr == FALSE) address_out <- stringr::str_replace_all(address_out, '(([0-9]|NORTH|NORTHEAST|NORTHWEST|EAST|WEST|SOUTH|SOUTHEAST|SOUTHWEST)\\s+)ST\\b', '\\1SAINT')
