@@ -1,2 +1,6 @@
 export(city_cleaner)
 export(street_cleaner)
+export(clean_states)
+
+importFrom(dplyr,tibble)
+importFrom(stringr,str_replace_all)
